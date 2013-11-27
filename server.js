@@ -1,10 +1,12 @@
 // server.js
 
-
+//var host = location.origin.replace(/^http/, 'ws');
+//this.connection = new WebSocket(host);
 	// set up
 	var express  = require('express');
 	var app = express(); 						// create our app w/ express
 	var mongoose = require('mongoose'); 		// mongoose for mongodb
+	var port = process.env.PORT || 3000;
 
 	// config
 
@@ -90,7 +92,8 @@
 
 
 	// listen (start todoapp with server.js) 
-	app.listen(8080);
-	console.log("Listening on port 8080");
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
 
 
