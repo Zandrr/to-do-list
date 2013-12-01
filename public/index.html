@@ -1,69 +1,25 @@
-
-<!-- index.html -->
-<!doctype html>
-
-<!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="TodoCtrl">
-<head>
-	<!-- META -->
-	<meta charset="utf-8">
-
-	<title>To Do App</title>
+<script ng:autobind
+src="http://code.angularjs.org/0.9.18/angular-0.9.18.js"></script>
+<script src="controller.js"></script>
 
 
-	<style>
-		html 					{ overflow-y:scroll; } 
-		body 					{ padding-top:50px; text-align: center; }
-		#todo-list 				{ margin-bottom:30px; }
-	</style>
-
-
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-	<!-- load angularjs -->
-	<script src="core.js"></script>
-
-</head>
-<!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
-<body ng-controller="mainController">
-	<div class="container">
-
-		<!-- HEADER AND TODO COUNT -->
-		<div class="header">
-			<h1>Whatcha' Wanna do? <span> You have {{ todos.length }} things in your list</span></h1>
-		</div>
-
-		<!-- TODO LIST -->
-		<div id="todo-list">
-			<div>
-
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-					</label>
-				</div>
-
-			</div>
-		</div>
-
-		<!-- FORM TO CREATE TODOS -->
-		<div id="todo-form">
-			<div>
-				<form>
-					<div>
-
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text"  placeholder="List, lists, lists. I love lists!" ng-model="curData.text">
-					</div>
-
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" ng-click="createTodo()">Add</button>
-				</form>
-			</div>
-		</div>
-
-	</div>
-
+<style type="text/css">
+.done-true {text-decoration: line-through; color: gray;}
+</style>
+<body ng:controller="TodoCtrl">
+    <div>
+      <h1>{{ app_title }}</h1>
+    </div>
+    <input type="text" name="todotext" size="35"
+    placeholder="Things todo..."/>
+    <button ng:click="addtodo()">add</button> <br/>
+    <button ng:click="removetodo()">delete</button><br/>
+    <button class ="reb" ng:click="removeAll()">delete all</button><br/>
+    <ul ng:repeat="todo in todos">
+        <li>
+            <input type="checkbox" name = "todo.done"> <!--if something is checked it is "todo.done"-->
+            <span ng:class = "'done-'+todo.done">{{todo.text}}</span>
+        </li>
+    </ul>
+</div>
 </body>
-</html>
-
